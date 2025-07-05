@@ -1,0 +1,16 @@
+model Setting {
+  id            String            @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  defaultValue  String
+  description   String?
+  selectionType SelectionTypeEnum @default(SINGLE)
+  appSettings   AppSetting[]
+  settingValues SettingValue[]
+
+  @@map("nf_settings")
+}
+
+enum SelectionTypeEnum {
+  SINGLE
+  MULTIPLE
+}

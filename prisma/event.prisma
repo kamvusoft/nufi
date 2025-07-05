@@ -1,0 +1,27 @@
+model Event {
+    id                      String      @id @default(auto()) @map("_id") @db.ObjectId
+    title                   String
+    details                 String
+    metadata                MetaData[]
+    sourceType              EventSourceTypeEnum
+    notifications           Notification[]
+    topic                   Topic       @relation(fields: [topicId], references: [id])
+    topicId                 String      @db.ObjectId
+    sourceReferenceId       String
+    sourceReferenceName     String?
+    sourceReferenceImage    String?
+    createdAt               DateTime    @default(now()) @db.Timestamp
+    expiresAt               DateTime?   @db.Timestamp
+
+    @@map("nf_events")
+}
+
+enum EventSourceTypeEnum {
+  SYSTEM
+  USER
+}
+
+type MetaData {
+    key     String
+    value   String
+}

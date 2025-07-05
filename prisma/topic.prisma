@@ -1,0 +1,13 @@
+model Topic {
+    id              String          @id @default(auto()) @map("_id") @db.ObjectId
+    name            String          @unique
+    description     String?
+    application     Application     @relation(fields: [applicationId], references: [id])
+    applicationId   String          @db.ObjectId
+    subscriptions   Subscription[]
+    events          Event[]
+    createdAt       DateTime        @default(now()) @db.Timestamp
+    updatedAt       DateTime        @updatedAt @db.Timestamp
+
+    @@map("nf_topics")
+}

@@ -1,0 +1,11 @@
+model AppSetting {
+    id              String          @id @default(auto()) @map("_id") @db.ObjectId
+    setting         Setting         @relation(fields: [settingId], references: [id])
+    settingId       String          @db.ObjectId
+    application     Application     @relation(fields: [applicationId], references: [id])
+    applicationId   String          @db.ObjectId
+    settingValues   SettingValue[]  @relation(fields: [settingValueIds], references: [id])
+    settingValueIds String[]        @db.ObjectId
+
+    @@map("nf_app_settings")
+}

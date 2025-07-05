@@ -1,0 +1,14 @@
+model Subscription {
+    id                      String      @id @default(auto()) @map("_id") @db.ObjectId
+    topic                   Topic       @relation(fields: [topicId], references: [id])
+    topicId                 String      @db.ObjectId
+    channel                 NotificationChannelEnum
+    notifications           Notification[]
+    subscriberReferenceId   String
+    subscriberEmail         String?
+    subscriberPhoneNumber   String?
+    createdAt               DateTime    @default(now()) @db.Timestamp
+    updatedAt               DateTime    @updatedAt @db.Timestamp
+
+    @@map("nf_subscriptions")
+}

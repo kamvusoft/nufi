@@ -1,0 +1,10 @@
+model SettingValue {
+    id             String          @id @default(auto()) @map("_id") @db.ObjectId
+    value          String      
+    setting        Setting         @relation(fields: [settingId], references: [id])
+    settingId      String          @db.ObjectId
+    appSettings    AppSetting[]    @relation(fields: [appSettingIds], references: [id])
+    appSettingIds  String[]        @db.ObjectId
+
+    @@map("nf_setting_values")
+}

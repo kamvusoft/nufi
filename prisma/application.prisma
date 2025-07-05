@@ -1,0 +1,16 @@
+model Application {
+    id          String      @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String?
+    apiKey      String?
+    apiSecret   String?
+    enabled     Boolean     @default(true)
+    owner       User        @relation(fields: [ownerId], references: [id])
+    ownerId     String      @db.ObjectId
+    appSettings AppSetting[]
+    topics      Topic[]
+    createdAt   DateTime    @default(now()) @db.Timestamp
+    updatedAt   DateTime    @updatedAt @db.Timestamp
+
+    @@map("nf_applications")
+}
