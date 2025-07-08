@@ -1,49 +1,90 @@
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nufi | Login</title>
+    <%- include('partials/header.ejs', {pageTitle: "Nufi | Login"}); %>
+    <link rel="stylesheet" href="assets/css/login-page.css">
 </head>
 <body>
-    <div style="display: flex; justify-content: center;">
-        <div style="flex: 1;">
-            <h1 style="width: auto;">Login</h1>
-            <form action="/user/login" method="post">
-                <label for="username">Username or email</label>
-                <input type="text" name="username" id="username">
-                <br>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-                <br>
-                <input type="submit" value="Login">
+    <div class="container" id="main-container">
+        <div class="form-container sign-up-container">
+            <form action="/user/register" method="post">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or fill your information to register</span>
+                <input 
+                    type="text" 
+                    name="username" 
+                    placeholder="Username" required/>
+                <div class="d-flex gap-2">
+                    <div class="flex-1">
+                        <input 
+                            type="password" 
+                            name="password"
+                            placeholder="Password" required />
+                    </div>
+                    <div class="flex-1">
+                        <input 
+                            type="password" 
+                            name="password-confirm" 
+                            placeholder="Confirm pass..." required />
+                    </div>
+                </div>
+                <div class="d-flex gap-2">
+                    <div class="flex-1">
+                        <input 
+                            type="text" 
+                            name="lastName" 
+                            placeholder="Last name" required />
+                    </div>
+                    <div class="flex-1">
+                        <input 
+                            type="text" 
+                            name="firstName" 
+                            placeholder="First name" />
+                    </div>
+                </div>
+                <input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Email">
+                <button type="submit">Sign Up</button>
             </form>
         </div>
-        <div style="flex: 1;">
-            <h1 style="width: auto;">Register</h1>
-            <form action="/user/register" method="post">
-                <label for="username">Username*</label>
-                <input type="text" name="username" id="username">
-                <br>
-                <label for="password">Password*</label>
-                <input type="password" name="password" id="password">
-                <br>
-                <label for="lastName">Last name*</label>
-                <input type="text" name="lastName" id="lastName">
-                <br>
-                <label for="firstName">First name</label>
-                <input type="text" name="firstName" id="firstName">
-                <br>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email">
-                <br>
-                <input type="submit" value="Register">
-            </form>
-            <% if (!!error) { %>
-                <div style="color: red;">
-                    <p> <%= error.map(it => `${it.path}: ${it.message}`).join(', ') %> </p>
+        <div class="form-container sign-in-container">
+            <form action="/user/login" method="post">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-            <% } %>
+                <span>or use your account</span>
+                <input type="text" name="username" placeholder="Username or email"/>
+                <input type="password" name="password" placeholder="Password"/>
+                <!-- <a href="#">Forgot your password?</a> -->
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected, please login with your personal info</p>
+                    <button class="ghost" id="sign-in-btn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello!</h1>
+                    <p>Enter your personal details and start journey with <span>Nufi</span></p>
+                    <button class="ghost" id="sign-up-btn">Sign Up</button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <%- include('partials/footer.ejs'); %>
+    <script src="assets/js/login-page.js"></script>
 </body>
 </html>

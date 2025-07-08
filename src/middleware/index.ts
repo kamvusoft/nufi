@@ -5,7 +5,7 @@ const indexRoute = Router();
 
 indexRoute.get('', (_request: Request, response: Response, _next: NextFunction) => {
     response.render("home", {
-        username: "martinxt"
+        username: undefined
     });
 });
 
